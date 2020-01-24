@@ -50,7 +50,7 @@ function [Sxx, Syy, Sxy, xc, yc, um, vm] = compute_stress(x,y,tx,ty,K1,K2,h,BC)
 % 
 % BC        Boundary conditions to apply. There are several options:
 %               'left-right' - Leftmost and rightmost points are 
-%                              onstrained, giving 3 BCs to account for 3 
+%                              constrained, giving 3 BCs to account for 3 
 %                              degrees of freedom
 %               'top' - top boundary is onstrained
 %               'bottom' - bottom boundary is onstrained
