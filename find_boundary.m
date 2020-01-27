@@ -47,12 +47,12 @@ mkdir('boundary_plots');
 %% --- USER INPUTS ---
 % Name of image. Multipage tif is possible. Set to empty arry [] if image
 % starts with c2_*.tif
-imname = 'c2.tif';
+imname = 'c2_island01.tif';
 % Threshold for Matlab Sobel filter
-filter_th = 3.2e2;
+filter_th = 2.8e3;
 % filter_th = 0.7e3; % Typical value of Hamamatsu Orca Flash: 0.8e3 - 1.2e3
 % Radius of circular kernal used to dilate bright spots
-dilate_rad = 16;
+dilate_rad = 10;
 % Directory and filename to save images with boundary
 savenameheader = 'boundary_plots/boundary_';
 % Number of images to run. Set to [] to run all images.

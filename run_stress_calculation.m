@@ -45,15 +45,15 @@ clc;
 % Number of timepoints to consider. To run all time points, set to []
 num_images = [];
 % Name of mat file with traction data
-traction_data = 'displ_tractions_w0=64.mat';
+traction_data = 'tract_results.mat';
 % Name of file to save data
-savename = 'stresses_BCleft.mat';
+savename = 'stresses_AS0.mat';
 % Name of multipage tif file for domain
 domainname = 'domain.tif';
 % Boundary condition to use. Options: 'none', 'all', 'left-right', 'top',
 % 'bottom', 'left', 'right'. See documentation of compute_stress.m for
 % description
-BC = 'left';
+BC = 'left-right';
 
 %% --- LOAD DATA ---
 
