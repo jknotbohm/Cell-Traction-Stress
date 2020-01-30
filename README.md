@@ -1,8 +1,9 @@
 # READ ME FOR TRACTION FORCE MICROSCOPY AND MONOLAYER STRESS MICROSCOPY
 
-*Repository for traction force microscopy and monolayer stress microscopy.* https://notbohm.ep.wisc.edu
+*Repository for traction force microscopy and monolayer stress microscopy.* 
 
 *Written by Notbohm Research Group, University of Wisconsin-Madison.*
+https://notbohm.ep.wisc.edu
 
 This document explains the Notbohm Research Group's procedures for analyzing 
 cell tractions and monolayer stresses. Relevant publications to read:
@@ -66,7 +67,10 @@ X			--- monolayer thickness (m)
 
 1 or 2		--- 1-strip; 2-hole/island
 
-An example is included.
+An example is included, titled ExperimentalSettings_example.txt. Copy this file into 
+the directory containing your data, rename it to ExperimentalSettings.txt and update the
+parameters in the file. This will allow you to analyze data with different parameters
+(pixel size, substrate stiffness, etc.).
 
 ## SUMMARY OF SCRIPTS TO RUN
 
