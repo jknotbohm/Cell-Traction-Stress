@@ -124,7 +124,7 @@ Computing stresses with **run_stress_calculation.m** requires the following:
 - A mat file containing the following variables: **x, y**: 2D arrays of size (M, N) containing the gridpoints on 
 which the DIC was computed. This can be made using Matlab's meshgrid command. Units: pix. 
 **tx, ty**: Tractions in horizontal and vertical directions. 2D or 3D arrays of size (M, N, P) where P is the
-number of time points. **d0***: Scalar grid point (subset) spacing used in image correlation.
+number of time points. **d0**: Scalar grid point (subset) spacing used in image correlation.
 - The **domain** file described above. This file is **required** for computing stresses.
 
 ## EXAMPLE WORKFLOWS
@@ -140,7 +140,6 @@ Put the images and **ExperimentalSettings.txt** into a single directory.
 3. Run DIC using a cumulative comparison that compares all images to the reference one. 
 Store outputs in a mat file containing w0, d0, x, y, u, v as described above.
 4. Run **find_boundary.m**. (Required for computing stresses.)
-for drift in the next step.
 5. Compute tractions using code available online or request our version of the code.
 6. Format output of traction as follows: 
 **w0**: scalar, subset/window size. Units: pix.
