@@ -79,6 +79,7 @@ images of fluorescent particles in the substrate. We often use FIDIC, written by
 Franck's research group. Citation: Bar-Kochba E, Toyjanova J, Andrews E, Kim K-S, Franck C.
 A Fast Iterative Digital Volume Correlation Algorithm for Large Deformations. 
 Experimental Mechanics 55:261–274, 2015. Available from https://github.com/FranckLab/
+or https://github.com/jknotbohm/FIDIC.
 - Identify regions in images containing cells using **find_boundary.m**
 (Calls function **smooth2a.m**, available on Matlab file exchange.)
 - Compute cell-substrate tracitions. There exist numerous packages on Github and other 
@@ -96,7 +97,7 @@ Matlab mat file that is used in other scripts.
 - **find_boundary.m** outputs an image called domain.tif that is used in other scripts. If you
 only want to compute cell-substrate tractions and not monolayer stresses, you may skip running this file.
 - **run_stress_calculation.m** outputs a mat file containing stresses in the x-y coordinate system (Sxx, Syy,
-Sxy) and principle stresses and orientation (S1, S2, pangle).
+Sxy) and principal stresses and orientation (S1, S2, pangle).
 
 ## POSTPROCESSING
 
