@@ -6,7 +6,15 @@
 https://notbohm.ep.wisc.edu
 
 This document explains the Notbohm Research Group's procedures for analyzing 
-cell tractions and monolayer stresses. Relevant publications to read:
+cell tractions and monolayer stresses. 
+
+There exist numerous other packages to compute tractions on Github and other 
+online sources. Advantages of this software are that the scripts are minimal
+and relatively modular--they can be combined with other analyses or easily
+improved. As a result of the minimalist format, users will benefit from having
+some experience with Matlab or  another coding language.
+
+Relevant publications to read:
 
 - Dembo, M. and Wang, Y. L. Stresses at the cell-to-substrate interface during 
 locomotion of fibroblasts. Biophys J, 76(4):2307–2316, 1999.
@@ -25,6 +33,9 @@ guidance by cooperative intercellular forces. Nat Mater, 10(6):469–475, 2011.
 - Tambe, D. T., Croutelle, U., Trepat, X., Park, C. Y., Kim, J. H., Millet, E., Butler, 
 J. P., and Fredberg, J. J. Monolayer stress microscopy: limitations, artifacts, and 
 accuracy of recovered intercellular stresses. Plos One, 8(2):e55172, 2013.
+- Huang, Y., Schell, C., Huber, T.B. et al. Traction force microscopy with optimized 
+regularization and automated Bayesian parameter selection for comparing cells. Sci Rep 
+9:539, 2019.
 
 ## SOFTWARE REQUIREMENTS
 
@@ -81,13 +92,27 @@ A Fast Iterative Digital Volume Correlation Algorithm for Large Deformations.
 Experimental Mechanics 55:261–274, 2015. Available from https://github.com/FranckLab/
 or https://github.com/jknotbohm/FIDIC.
 - Identify regions in images containing cells using **find_boundary.m**
-(Calls function **smooth2a.m**, available on Matlab file exchange.)
-- Compute cell-substrate tracitions. There exist numerous packages on Github and other 
-sources to compute tractions. Our version of the software is available upon request.
+(Calls function **smooth2a.m**)
+- Compute cell-substrate tracitions using **run_reg_fourier_TFM.m**. 
+(Calls functions **Kabsch.m**, **inpaint_nans.m**, **smooth2a.m**, **reg_fourier_TFM.m**)
 - Compute monolayer stresses using **run_stress_calculation.m**
 (Calls functions **force_moment_equilibrium.m**, **compute_stress.m**)
 
 Each script has detailed comments.
+
+#### Sources
+
+The following scripts are from the Matlab file exchange:
+- **smooth2a.m**: https://www.mathworks.com/matlabcentral/fileexchange/23287-smooth2a
+- **Kabsch.m**: https://www.mathworks.com/matlabcentral/fileexchange/25746-kabsch-algorithm. Note 
+that the outputs of this script have been modified slightly by Jacob Notbohm.
+- **inpaint_nans.m**: https://www.mathworks.com/matlabcentral/fileexchange/4551-inpaint_nans
+
+The following script is from the Easy-to-use_TFM_package written by the 
+Sabass lab:
+- **reg_fourier_TFM.m**: https://github.com/CellMicroMechanics/Easy-to-use_TFM_package
+
+
 
 ## SUMMARY OF OUTPUTS
 
@@ -96,6 +121,8 @@ to these, the subset size (w0) and spacing (d0) are required. These data are sto
 Matlab mat file that is used in other scripts.
 - **find_boundary.m** outputs an image called domain.tif that is used in other scripts. If you
 only want to compute cell-substrate tractions and not monolayer stresses, you may skip running this file.
+- **run_reg_fourier_TFM.m** outputs a mat file containing displacement data that has been modified
+slightly (eg, by cropping and correcting for drift) and computed tractions
 - **run_stress_calculation.m** outputs a mat file containing stresses in the x-y coordinate system (Sxx, Syy,
 Sxy) and principal stresses and orientation (S1, S2, pangle).
 
@@ -118,7 +145,19 @@ The DIC software we use reads multipage tif files, where the different pages cor
 points.
 
 #### Traction Calculation
-Format data as required by the traction software you are using.
+Computing tractions with **run_traction_finite.m** requires the following:
+
+- A mat file containing the following variables:
+**w0**: scalar, subset/window size. Units: pix.
+**d0**: scalar, subset spacing. Units: pix.
+**x, y**: 2D arrays containing the gridpoints on which the DIC was computed. This can be made using Matlab's meshgrid
+command. Units: pix.
+**u, v**: 2D or 3D arrays of size (M, N, P) where M and N are the number of rows and columns, which must match the
+size of x and y. Variable P corresponds to different time points. If there is only one time point, then the array is 
+2D (i.e., if P=1).
+- (Optional) A **domain** file. The file must be a multipage tif with the number of pages equal to the number of time 
+points. As stated above each image is 8-bit with 0s at locations without cells and values of 255 at 
+locations with cells.
 
 #### Stress Calculation
 Computing stresses with **run_stress_calculation.m** requires the following: 
@@ -141,8 +180,8 @@ Put the images and **ExperimentalSettings.txt** into a single directory.
 3. Run DIC using a cumulative comparison that compares all images to the reference one. 
 Store outputs in a mat file containing w0, d0, x, y, u, v as described above.
 4. Run **find_boundary.m**. (Required for computing stresses.)
-5. Compute tractions using code available online or request our version of the code.
-6. Format output of traction as follows: 
+5. Compute tractions with **run_reg_fourier_TFM.m**.
+Output of traction computation is formatted as follows: 
 **w0**: scalar, subset/window size. Units: pix.
 **d0**: scalar, subset spacing. Units: pix.
 **x, y**: 2D arrays containing the gridpoints on which the DIC was computed. This can be made using Matlab's meshgrid
@@ -153,6 +192,7 @@ size of x and y. Variable P corresponds to different time points. If there is on
 2D (i.e., if P=1).
 **tx, ty**: Tractions in horizontal and vertical directions. 2D or 3D arrays of size (M, N, P) that matches the 
 size of u and v.
+
 7. Run **plot_displ_tractions.m** to bring up a color map of the computed displacements and tractions. Verify that the displacements
 and tractions are reasonable before going to the next step.
 8. Run **run_stress_calculation.m**.
