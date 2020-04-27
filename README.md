@@ -36,6 +36,19 @@ accuracy of recovered intercellular stresses. Plos One, 8(2):e55172, 2013.
 - Huang, Y., Schell, C., Huber, T.B. et al. Traction force microscopy with optimized 
 regularization and automated Bayesian parameter selection for comparing cells. Sci Rep 
 9:539, 2019.
+- Huang, Y., Gompper, G., Sabass, B. A Bayesian traction force microscopy 
+method with automated denoising in a user-friendly software package. 
+Comput Phys Commun, 2020.
+
+## CITATION
+
+If used, cite the following:
+
+- [Huang, Y., Gompper, G., Sabass, B. A Bayesian traction force microscopy 
+method with automated denoising in a user-friendly software package. 
+Comput Phys Commun, 2020.](https://www.sciencedirect.com/science/article/pii/S001046552030120X?casa_token=36Jmmquso6UAAAAA:_-ajkvucqNCWFIaPx8n019xjdXnOlNob4D9U2edwXoM3xto_nhqEs-m7RMnRZaoAaDPlwJjj)
+[doi:10.1016/j.cpc.2020.107313](https://doi.org/10.1016/j.cpc.2020.107313) 
+(for **reg_fourier_TFM.m**)
 
 ## SOFTWARE REQUIREMENTS
 
