@@ -158,7 +158,7 @@ The DIC software we use reads multipage tif files, where the different pages cor
 points.
 
 #### Traction Calculation
-Computing tractions with **run_traction_finite.m** requires the following:
+Computing tractions with **run_reg_fourier_TFM.m** requires the following:
 
 - A mat file containing the following variables:
 **w0**: scalar, subset/window size. Units: pix.
@@ -168,6 +168,7 @@ command. Units: pix.
 **u, v**: 2D or 3D arrays of size (M, N, P) where M and N are the number of rows and columns, which must match the
 size of x and y. Variable P corresponds to different time points. If there is only one time point, then the array is 
 2D (i.e., if P=1).
+Our version of digital image correlation (**run_FIDIC.m**) outputs a mat file having these variables.
 - (Optional) A **domain** file. The file must be a multipage tif with the number of pages equal to the number of time 
 points. As stated above each image is 8-bit with 0s at locations without cells and values of 255 at 
 locations with cells.
