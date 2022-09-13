@@ -1,6 +1,6 @@
 1.3e-6  	--- pixel size (m)
 4.8e3		--- substrate Young's modulus (Pa)
-0.48		--- substrate Poisson's ratio (-)
+0.3		--- substrate Poisson's ratio (-)
 100		--- substrate thickness (um)
 0.3	 	--- monolayer Poisson's ratio (matters only slightly; Young's modulus is irrelevant)
 5e-6		--- monolayer thickness (m)
